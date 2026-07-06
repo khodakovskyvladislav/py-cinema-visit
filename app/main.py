@@ -1,29 +1,34 @@
-def cinema_visit(
-        movie: str,
-        customers: list,
-        hall_number: int,
-        cleaner: str
-) -> None:
-    from app.people.customer import Customer
-    from app.cinema.bar import CinemaBar
-    from app.cinema.hall import CinemaHall
-    from app.people.cinema_staff import Cleaner
+from app.people.customer import Customer
+from app.people.cinema_staff import Cleaner
+from app.cinema.bar import CinemaBar
+from app.cinema.hall import CinemaHall
 
-    # Create instances of Customer
-    customer_instances = [Customer(name=cust["name"],
-                                   food=cust["food"]) for cust in customers
-                          ]
 
-    # Sell food to customers using CinemaBar
-    for customer in customer_instances:
-        CinemaBar.sell_product(product=customer.food, customer=customer)
+def cinema_visit(movie: str,
+                 customers: list,
+                 hall_number: int,
+                 cleaner: str) -> None:
+    # 1. Создаем объекты покупателей
+    customer_objects = [Customer(c["name"], c["food"]) for c in customers]
 
-    # Create instance of CinemaHall
-    hall = CinemaHall(hall_number=hall_number)
+    # 2. Создаем объекты персонала
+    cleaner_obj = Cleaner(cleaner)
+    hall_obj = CinemaHall(hall_number)
 
-    # Create instance of Cleaner
-    cleaning_staff = Cleaner(name=cleaner)
+    # 3. Продаем еду каждому
+    for customer in customer_objects:
+        CinemaBar.sell_product(customer.food, customer)
 
-    # Schedule movie session
-    hall.movie_session(movie_name=movie, customers=customer_instances,
-                       cleaning_staff=cleaning_staff)
+    # 4. Проводим сеанс
+    hall_obj.movie_session(movie, customer_objects, cleaner_obj)
+
+
+customers = [
+    {"name": "Bob", "food": "Coca-cola"},
+    {"name": "Alex", "food": "popcorn"}
+]
+hall_number = 5
+cleaner_name = "Anna"
+movie = "Madagascar"
+cinema_visit(customers=customers, hall_number=hall_number,
+             cleaner=cleaner_name, movie=movie)
