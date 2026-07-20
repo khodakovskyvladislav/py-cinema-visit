@@ -21,7 +21,7 @@ class CinemaHall:
     ) -> None:
         # 1. Информируем о начале сеанса, используя номер зала из\
         # атрибутов класса
-        print(f"'{movie_name}' is started in hall number {self.number}")
+        print(f'"{movie_name}" started in hall number {self.number}. ')
 
         # 2. Перебираем каждого клиента из переданного списка
         for customer in customers:
@@ -30,7 +30,7 @@ class CinemaHall:
             customer.watch_movie(movie_name)
 
         # 4. Сообщаем об окончании сеанса
-        print(f"'{movie_name}'ended")
+        print(f'"{movie_name}" ended. ')
 
         # 5. Делегируем уборку: вызываем метод 'clean_hall' у объекта\
         # 'cleaning_staff',
