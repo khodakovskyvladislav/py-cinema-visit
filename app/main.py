@@ -4,10 +4,12 @@ from app.cinema.bar import CinemaBar
 from app.cinema.hall import CinemaHall
 
 
-def cinema_visit(movie: str,
-                 customers: list,
-                 hall_number: int,
-                 cleaner: str) -> None:
+def cinema_visit(
+    hall_number: int,
+    cleaner: str,
+    movie: str,
+    customers: list,
+) -> None:
     # 1. Создаем объекты покупателей
     customer_objects = [Customer(c["name"], c["food"]) for c in customers]
 

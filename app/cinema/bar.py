@@ -10,7 +10,10 @@ class CinemaBar:
     # @staticmethod означает, что методу не нужен объект класса (self).
     # Мы можем вызвать его как CinemaBar.sell_product(...)
     @staticmethod
-    def sell_product(product: str, customer: "Customer") -> None:
+    def sell_product(
+        product: str,
+        customer: "Customer"
+    ) -> None:
         # Используем данные из объекта customer (его имя),
         # чтобы сформировать сообщение.
         print(f"Cinema bar sold {product} to {customer.name}.")
