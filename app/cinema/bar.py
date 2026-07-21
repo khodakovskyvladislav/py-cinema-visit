@@ -1,5 +1,5 @@
-# Импорт через TYPE_CHECKING, чтобы избежать циклической зависимости,
-# если Customer тоже когда-то захочет импортировать Bar.
+# via TYPE_CHECKING to avoid circular dependencies,
+# if Customer wants someday will want to import Bar.
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -7,13 +7,13 @@ if TYPE_CHECKING:
 
 
 class CinemaBar:
-    # @staticmethod означает, что методу не нужен объект класса (self).
-    # Мы можем вызвать его как CinemaBar.sell_product(...)
-    @staticmethod
+    # @staticmethod means the method doesn't require a class object (self).
+    # We can call it as CinemaBar.sell_product(...)    @staticmethod
     def sell_product(
+        self,
         product: str,
         customer: "Customer"
     ) -> None:
-        # Используем данные из объекта customer (его имя),
-        # чтобы сформировать сообщение.
+        # Use the data from the customer object (its name),
+        # to form a message.
         print(f"Cinema bar sold {product} to {customer.name}.")

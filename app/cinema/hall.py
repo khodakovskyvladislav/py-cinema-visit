@@ -1,15 +1,15 @@
 from typing import TYPE_CHECKING
 
-# Блок TYPE_CHECKING выполняется только анализатором (Pylance),
-# но игнорируется при реальном запуске программы.
-# Это решает проблему циклических импортов и ошибок UndefinedVariable.
+# The TYPE_CHECKING block is executed only by the analyzer (Pylance),
+# but is ignored during actual program execution.
+# This solves the problem of circular imports and UndefinedVariable errors.
 if TYPE_CHECKING:
     from app.people.cinema_staff import Cleaner
 
 
 class CinemaHall:
-    # Конструктор: сохраняем номер зала, чтобы метод movie_session
-    # знал, где именно проходит сеанс.
+    # Constructor: we save the hall number so that the movie_session method
+    # knows where exactly the session is taking place.
     def __init__(self, number: int) -> None:
         self.number = number
 
@@ -17,22 +17,21 @@ class CinemaHall:
         self,
         movie_name: str,
         customers: list,
-        cleaning_staff: "Cleaner"  # Аннотация (Forward Reference)
+        cleaning_staff: "Cleaner"  # Annotation (Forward Reference)
     ) -> None:
-        # 1. Информируем о начале сеанса, используя номер зала из\
-        # атрибутов класса
-        print(f'"{movie_name}" started in hall number {self.number}. ')
+        # 1. Inform about the start of the session, using the hall number from
+        # the class attributes
+        print(f'"{movie_name}" started in hall number {self.number}.')
 
-        # 2. Перебираем каждого клиента из переданного списка
+        # 2. Iterate through each customer in the provided list
         for customer in customers:
-            # 3. Вызываем у объекта 'customer' его собственный\
-            #  метод 'watch_movie'
+            # 3. Call the 'watch_movie' method on the 'customer' object
             customer.watch_movie(movie_name)
 
-        # 4. Сообщаем об окончании сеанса
-        print(f'"{movie_name}" ended. ')
+        # 4. Inform about the end of the session
+        print(f'"{movie_name}" ended.')
 
-        # 5. Делегируем уборку: вызываем метод 'clean_hall' у объекта\
-        # 'cleaning_staff',
-        # передавая ему номер текущего зала.
+        # 5. Delegate the cleaning task: call the 'clean_hall'
+        # method on the 'cleaning_staff' object,
+        # passing him the number of the current room.
         cleaning_staff.clean_hall(self.number)
