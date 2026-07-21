@@ -5,10 +5,11 @@ from app.cinema.hall import CinemaHall
 
 
 def cinema_visit(
+    movie: str,
     customers: list,
     hall_number: int,
     cleaner: str,
-    movie: str,
+
 
 ) -> None:
     # 1. Создаем объекты покупателей
@@ -24,14 +25,3 @@ def cinema_visit(
 
     # 4. Проводим сеанс
     hall_obj.movie_session(movie, customer_objects, cleaner_obj)
-
-
-customers = [
-    {"name": "Bob", "food": "Coca-cola"},
-    {"name": "Alex", "food": "popcorn"}
-]
-hall_number = 5
-cleaner_name = "Anna"
-movie = "Madagascar"
-cinema_visit(customers=customers, hall_number=hall_number,
-             cleaner=cleaner_name, movie=movie)
