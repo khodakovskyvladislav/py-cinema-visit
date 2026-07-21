@@ -8,9 +8,8 @@ if TYPE_CHECKING:
 
 class CinemaBar:
     # @staticmethod means the method doesn't require a class object (self).
-    # We can call it as CinemaBar.sell_product(...)    @staticmethod
+    @staticmethod
     def sell_product(
-        self,
         product: str,
         customer: "Customer"
     ) -> None:
